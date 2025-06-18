@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Legal Chatbot - Murder Laws in India</title>
+</head>
+<body>
+
+<h1 style="color:#2c3e50;text-align:center;">Legal Chatbot for Murder Laws in India</h1>
+
+<form method="POST" style="text-align:center;margin-bottom:1.5rem;">
+  {% csrf_token %}
+  <input type="text" name="question" placeholder="Ask your question about Murder Laws in India..." value="{{ question|default:'' }}" required autofocus autocomplete="off" style="width:70%; border:1px solid red;border-radius:4px;" />
+  <button type="submit">Ask</button>
+</form>
+
+{% if answer %}
+<section>
+  <h2>Answer:</h2>
+  <pre style="white-space:pre-wrap">{{ answer }}</pre>
+</section>
+{% endif %}
+
+{% if chat_history %}
+<section style="background:white;border-radius:6px;">
+  <h2>Chat History</h2>
+  {% for chat in chat_history %}
+  <div>
+    <div>Q: {{ chat.question }}</div>
+    <div>A: {{ chat.answer }}</div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+</body>
+</html>
